@@ -1,0 +1,19 @@
+<% include ../header.ejs %>
+<% include ../errorlist.ejs %>
+
+<form action='/usuario/login/processa' method='POST' class="form-horizontal col-sm-4 col-sm-offset-4"> 
+	<h1>Seja bem-vindo!</h1>	
+	<div class="form-group">
+		<input type='text' name='usuario[nickname]' placeholder='login'  class="form-control" />
+	</div>
+	<div class="form-group">
+		<input type='password' name='usuario[senha]' placeholder='senha' class="form-control" />
+	</div>
+	<div class="form-group">
+		<p><a href='/usuario/cadastro'>Criar nova conta</a></p>
+
+		<input type='submit' value='Entrar' class="btn btn-primary" />
+	</div>
+</form>
+
+<% include ../footer.ejs %>
