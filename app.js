@@ -1,6 +1,17 @@
 'use strict';
-
-
+/**
+ * Required Modules
+ * @author Diego Candido and Rodrigo Oler
+ * @version 1.0.1
+ * @param  {[type]} 'express' [express module]
+ * @param  {[type]} 'load' [express-load module]
+ * @param  {[type]} 'http' [http module]
+ * @param  {[type]} 'path' [path module]
+ * @param  {[type]} 'mongoose' [mongoose module]
+ * @param  {[type]} 'favicon' [static-favicon module]
+ * @param  {[type]} 'logger' [morgan module]
+ * @param  {[type]} 'logger' [morgan module]
+ */
 const express = require('express'),
 	load = require('express-load'),
 	http = require('http'),
@@ -14,7 +25,11 @@ const express = require('express'),
 	expressValidator = require('express-validator'),
 	app = express();
 
-//conexão com o mongodb
+/**
+ * [connect description]
+ * @param  {[type]} 'mongodb:	if (err          [description]
+ * @return {[type]}              [description]
+ */
 mongoose.connect('mongodb://localhost/nweets', (err) => {
 	if (err) console.log("Erro ao conectar no mongodb: " + err);
 	else console.log("Conexão com o mongodb efetuada com sucesso!");
