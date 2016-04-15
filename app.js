@@ -1,25 +1,39 @@
-var express      = require('express');
-var load         = require('express-load');
-var http         = require('http');
-var path         = require('path');
-var mongoose     = require('mongoose');
-var favicon      = require('static-favicon');
-var logger       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
-expressValidator = require('express-validator');
+'use strict';
+/**
+ * Required Modules
+ * @author Diego Candido and Rodrigo Oler
+ * @version 1.0.1
+ * @param  {[type]} 'express' [express module]
+ * @param  {[type]} 'load' [express-load module]
+ * @param  {[type]} 'http' [http module]
+ * @param  {[type]} 'path' [path module]
+ * @param  {[type]} 'mongoose' [mongoose module]
+ * @param  {[type]} 'favicon' [static-favicon module]
+ * @param  {[type]} 'logger' [morgan module]
+ * @param  {[type]} 'logger' [morgan module]
+ */
+const express = require('express'),
+	load = require('express-load'),
+	http = require('http'),
+	path = require('path'),
+	mongoose = require('mongoose'),
+	favicon = require('static-favicon'),
+	logger = require('morgan'),
+	cookieParser = require('cookie-parser'),
+	bodyParser = require('body-parser'),
+	session = require('express-session'),
+	expressValidator = require('express-validator'),
+	app = express();
 
-//conexão com o mongodb
-mongoose.connect('mongodb://localhost/nwitter"', function(err){
-	if(err){
-		console.log("Erro ao conectar no mongodb: "+err);
-	}else{
-		console.log("Conexão com o mongodb efetuada com sucesso!");
-	}
+/**
+ * [connect description]
+ * @param  {[type]} 'mongodb:	if (err          [description]
+ * @return {[type]}              [description]
+ */
+mongoose.connect('mongodb://localhost/nweets', (err) => {
+	if (err) console.log("Erro ao conectar no mongodb: " + err);
+	else console.log("Conexão com o mongodb efetuada com sucesso!");
 });
-
-var app = express();
 
 // all environments
 // view engine setup
@@ -32,7 +46,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(expressValidator());
 app.use(cookieParser());
-app.use(session({ secret: 'Diego' }));
+app.use(session({
+	secret: 'Diego'
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 load('models').
@@ -40,6 +56,6 @@ then('controllers').
 then('routes').
 into(app);
 
-app.listen(3000, function() {
-    console.log('Express server listening on port 3000');
+app.listen(3000, () => {
+	console.log('Express server listening on port 3000');
 });
